@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Illumineer's Quest — The Great Hunny Rescue — Cheat Sheet</title>
+<style>
+  :root{
+    --ink:#1C1730;
+    --ink-2:#2C2450;
+    --gold:#B4903D;
+    --gold-light:#E7CD8A;
+    --parchment:#FBF6EA;
+    --parchment-2:#F3EAD3;
+    --text-dark:#2A2118;
+    --text-muted:#6B5F4C;
+    --amber:#D79A1E;
+    --amethyst:#7B5EA7;
+    --emerald:#1F8A54;
+    --ruby:#B23B34;
+    --sapphire:#2E6FA7;
+    --steel:#6E7B80;
+    --vine:#2F4A2E;
+    --vine-2:#3E6B3B;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
+  body{
+    margin:0;
+    background:var(--ink);
+    font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    color:var(--text-dark);
+    padding:32px 16px;
+  }
+  .sheet{
+    max-width:900px;
+    margin:0 auto;
+    background:var(--parchment);
+    border:2px solid var(--gold);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  header{
+    background:linear-gradient(135deg, var(--ink-2), var(--vine) 85%);
+    padding:22px 32px;
+    border-bottom:3px solid var(--gold);
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  header svg.vine-mark{flex-shrink:0;}
+  header h1{
+    margin:0;
+    font-family:Georgia,"Iowan Old Style",serif;
+    color:var(--gold-light);
+    font-size:24px;
+    letter-spacing:0.5px;
+  }
+  header p{
+    margin:4px 0 0;
+    color:#C9C2DE;
+    font-size:13px;
+  }
+  section{
+    padding:22px 32px;
+    border-bottom:1px solid var(--parchment-2);
+  }
+  section:last-of-type{border-bottom:none;}
+  h2{
+    font-family:Georgia,"Iowan Old Style",serif;
+    color:var(--ink-2);
+    font-size:18px;
+    margin:0 0 14px;
+    padding-bottom:6px;
+    border-bottom:2px solid var(--gold);
+    display:inline-block;
+  }
+  h2.vine-h2{color:var(--vine);}
+  p.lead{font-size:13.5px;line-height:1.6;margin:0 0 14px;}
+  p.lead i{color:var(--text-muted);}
+  .symbol-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:12px;
+  }
+  .symbol{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--parchment-2);
+    border:1px solid #E2D6B4;
+    border-radius:8px;
+    padding:8px 12px;
+  }
+  .symbol svg{flex-shrink:0;}
+  .symbol .label{font-weight:600;font-size:13.5px;color:var(--text-dark);}
+  .symbol .desc{font-size:12px;color:var(--text-muted);}
+  .flow{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .phase{
+    background:var(--parchment-2);
+    border-left:4px solid var(--gold);
+    border-radius:0 8px 8px 0;
+    padding:10px 14px;
+  }
+  .phase.vine-phase{border-left-color:var(--vine-2);}
+  .phase .ph-title{font-weight:700;font-size:14px;color:var(--ink-2);margin-bottom:3px;display:flex;align-items:center;gap:8px;}
+  .phase.vine-phase .ph-title{color:var(--vine);}
+  .phase .ph-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:20px;height:20px;border-radius:50%;
+    background:var(--gold);color:#fff;font-size:11px;font-weight:800;flex-shrink:0;
+  }
+  .phase.vine-phase .ph-num{background:var(--vine-2);}
+  .phase ul{margin:4px 0 0;padding-left:18px;font-size:13px;line-height:1.6;}
+  .phase ul ul{margin-top:2px;padding-left:16px;font-size:12.5px;}
+  .note{
+    background:#F6E9D8;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    padding:10px 14px;
+    font-size:13px;
+    margin-top:12px;
+  }
+  .note b{color:var(--ruby);}
+  .note.vine-note{background:#E9EFE4;border-color:var(--vine-2);}
+  .note.vine-note b{color:var(--vine);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .box{
+    background:var(--parchment-2);
+    border:1px solid #E2D6B4;
+    border-radius:8px;
+    padding:12px 14px;
+  }
+  .box.vine-box{border-color:#C9D9C4;background:#EEF3EA;}
+  .box h3{margin:0 0 8px;font-size:14px;color:var(--ink-2);display:flex;align-items:center;gap:8px;}
+  .box.vine-box h3{color:var(--vine);}
+  .box ul{margin:0;padding-left:18px;font-size:12.5px;line-height:1.65;}
+  .reward-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;}
+  .reward{
+    display:flex;align-items:flex-start;gap:12px;
+    background:#EEF3EA;border:1px solid #C9D9C4;border-radius:8px;padding:10px 14px;
+  }
+  .reward .icon-badge{
+    flex-shrink:0;width:34px;height:34px;border-radius:50%;
+    background:var(--vine);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:16px;font-weight:800;
+  }
+  .reward .label{font-weight:700;font-size:13px;color:var(--vine);}
+  .reward .desc{font-size:12px;color:var(--text-muted);margin-top:2px;}
+  .scenario-tag{
+    display:inline-block;font-size:11px;font-weight:700;letter-spacing:.3px;
+    text-transform:uppercase;color:#fff;background:var(--vine);
+    border-radius:4px;padding:2px 8px;margin-bottom:6px;
+  }
+  .inline-icon{width:11px;height:13px;vertical-align:middle;margin:0 1px;}
+  .check-section{
+    background:linear-gradient(135deg,#EEF3EA,var(--parchment-2));
+    border-bottom:3px solid var(--gold) !important;
+  }
+  .check-grid{display:flex;flex-direction:column;gap:14px;}
+  .check-col{
+    background:#fff;
+    border:1px solid #E2D6B4;
+    border-radius:10px;
+    padding:14px 16px;
+  }
+  .check-col.vine{border-color:#B7CDB2;}
+  .check-title{
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:15px;font-weight:700;margin:0 0 10px;
+    padding-bottom:6px;border-bottom:2px solid var(--ink-2);
+    color:var(--ink-2);
+  }
+  .check-col.vine .check-title{border-bottom-color:var(--vine);color:var(--vine);}
+  ul.checklist{list-style:none;margin:0;padding:0;}
+  ul.checklist li{
+    display:flex;align-items:flex-start;gap:8px;
+    font-size:12.5px;line-height:1.55;
+    padding:5px 0;border-bottom:1px dashed #E2D6B4;
+  }
+  ul.checklist li:last-child{border-bottom:none;}
+  ul.checklist li::before{
+    content:"☐";flex-shrink:0;font-size:14px;line-height:1.4;
+    color:var(--ink-2);
+  }
+  .check-col.vine ul.checklist li::before{color:var(--vine);}
+  ul.checklist li b{color:var(--text-dark);}
+  ul.checklist .sub{font-size:11.5px;color:var(--text-muted);display:block;margin-top:1px;}
+  .round-order{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    font-size:12.5px;font-weight:700;color:var(--text-muted);
+    margin:14px 0 4px;flex-wrap:wrap;
+  }
+  .round-order .step{
+    background:var(--ink-2);color:#fff;border-radius:20px;padding:5px 14px;
+  }
+  .round-order .step.vine{background:var(--vine);}
+  .round-order .arrow{color:var(--gold);font-size:16px;}
+  footer{
+    padding:14px 32px;
+    font-size:11px;
+    color:var(--text-muted);
+    text-align:center;
+  }
+  @media(max-width:640px){
+    .two-col{grid-template-columns:1fr;}
+  }
+  @media print{
+    @page{ size:A4; margin:12mm; }
+    html, body{ background:#fff !important; padding:0 !important; }
+    .sheet{
+      max-width:none;
+      border:none;
+      border-radius:0;
+      box-shadow:none;
+    }
+    header{
+      background:var(--parchment-2) !important;
+      border-bottom:2px solid var(--gold);
+    }
+    header h1{ color:var(--ink-2) !important; }
+    header p{ color:var(--text-muted) !important; }
+    section{
+      padding:14px 6px;
+      border-bottom:1px solid #E2D6B4;
+      break-inside:avoid;
+      page-break-inside:avoid;
+    }
+    .symbol, .box, .phase, .note, .reward{
+      break-inside:avoid;
+      page-break-inside:avoid;
+    }
+    .two-col, .symbol-grid, .reward-grid{ gap:8px; }
+    footer{ padding:10px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <svg class="vine-mark" width="46" height="54" viewBox="0 0 100 120">
+      <path d="M50 118 C50 90 20 85 20 60 C20 40 45 40 45 22 C45 10 35 6 30 2" fill="none" stroke="#E7CD8A" stroke-width="6" stroke-linecap="round"/>
+      <path d="M45 22 C45 22 60 20 62 8" fill="none" stroke="#E7CD8A" stroke-width="5" stroke-linecap="round"/>
+      <path d="M20 60 C20 60 4 58 0 46" fill="none" stroke="#E7CD8A" stroke-width="5" stroke-linecap="round"/>
+      <path d="M35 78 C35 78 50 74 50 60" fill="none" stroke="#E7CD8A" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="30" cy="2" r="5" fill="#E7CD8A"/>
+      <circle cx="62" cy="8" r="5" fill="#E7CD8A"/>
+      <circle cx="0" cy="46" r="5" fill="#E7CD8A"/>
+    </svg>
+    <div>
+      <h1>Illumineer's Quest — The Great Hunny Rescue</h1>
+      <p>De Vine · Setup · Beurtstructuur · Encounters · Winnen &amp; verliezen</p>
+      <p style="margin-top:2px;font-size:11px;opacity:0.75;">Fan-gemaakte cheat sheet · eigen samenvatting op basis van het officiële regelboekje (Ravensburger/Disney, 2026), als aanvulling op het Disney Lorcana basisspel</p>
+    </div>
+  </header>
+
+  <section class="check-section">
+    <h2 class="vine-h2">✔ Checklist — wat check je elke ronde?</h2>
+    <p class="lead">Een ronde bestaat uit de beurt van De Vine, gevolgd door de gezamenlijke beurt van de Illumineers. Onderstaande checklists zijn de <b>korte samenvatting</b> — de volledige uitleg per stap staat verderop in dit document.</p>
+    <div class="round-order">
+      <span class="step vine">1. De Vine's beurt</span>
+      <span class="arrow">→</span>
+      <span class="step">2. Illumineers' beurt (samen)</span>
+      <span class="arrow">→</span>
+      <span class="step vine">herhaal</span>
+    </div>
+    <div class="check-grid" style="margin-top:14px;">
+      <div class="check-col vine">
+        <div class="check-title">🌿 De Vine's beurt</div>
+        <ul class="checklist">
+          <li><b>Ready</b> — kaarten rechtop draaien.</li>
+          <li><b>Set</b> — <b>check Vine Lore Rewards-drempel</b> op het bord bereikt?</li>
+          <li><b>Resolve the Row</b> — rij van links naar rechts afhandelen.</li>
+          <li><b>Draw</b> — <b>check trekteller</b>, trek dat aantal.</li>
+          <li><b>Reveal</b> — kaarten omdraaien en direct afhandelen.</li>
+          <li><b>Check</b> — 40 Lore? → De Vine wint.</li>
+        </ul>
+      </div>
+      <div class="check-col">
+        <div class="check-title">🧑‍🤝‍🧑 De Illumineers' beurt</div>
+        <ul class="checklist">
+          <li><b>Ready</b> — eigen kaarten rechtop draaien.</li>
+          <li><b>Set</b> — begineffecten afhandelen.</li>
+          <li><b>Draw</b> — 1 kaart trekken. <b>Check</b> — leeg deck? → Vine wint.</li>
+          <li><b>Main phase</b> — samen spelen, questen, challengen.</li>
+          <li><b>Check</b> — iedereen genoeg Lore voor de encounter? → voltooid.</li>
+          <li><b>Check</b> — Boss (3e encounter) verslagen? → gewonnen.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="vine-h2">Overzicht &amp; Doel</h2>
+    <p class="lead">Eén tot vier Illumineers spelen samen tegen <b>De Vine</b>, een geautomatiseerde tegenstander die zichzelf bestuurt volgens vaste regels — geen extra speler nodig. <i>Doel: help Winnie de Poeh en vrienden om Knorretje te redden, en versla daarna de bron van de Vine's kracht.</i> Verzamel samen Lore om achtereenvolgende encounters te voltooien in twee scenario's: <b>De Zoektocht naar Knorretje</b> en <b>Het Hart van de Vine</b>.</p>
+    <div class="note vine-note">Alle normale <b>Disney Lorcana</b>-regels blijven gelden (zie basisspel cheat sheet) — dit document beschrijft alleen wat er <b>anders</b> is tegen De Vine. Hieronder volgt de <b>uitgebreide, gedetailleerde uitleg</b> van elke stap uit de checklist hierboven.</div>
+  </section>
+
+  <section>
+    <h2 class="vine-h2">Setup</h2>
+    <div class="flow">
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">1</span>Difficulty kiezen</div>
+        <ul><li>Kies <b>Normal</b> of <b>Hard</b> en leg dat bord met die kant naar boven. Speel bij een eerste potje eerst beide scenario's op Normal.</li></ul>
+      </div>
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">2</span>Vine's trekteller</div>
+        <ul><li>Zet de teller op het aantal meespelende Illumineers — zoveel kaarten trekt De Vine elke beurt. Kan later omhoog door Vine Lore Rewards.</li></ul>
+        <div class="note vine-note" style="margin-top:8px;"><b>Voorbeeld:</b> speel je solo, dan trekt De Vine 1 kaart per beurt. Met 2 Illumineers trekt hij er 2 per beurt — dit kan later omhoog gaan als De Vine een "plus"-drempel op de Lore-track bereikt (check je bord, zie Vine Lore Rewards).</div>
+      </div>
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">3</span>Scenario &amp; encounters</div>
+        <ul><li>Kies één scenario. Stapel de bijbehorende encounterkaarten (1-3 of 4-6) laagste bovenop, facedown, op de encounter-plek.</li></ul>
+      </div>
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">4</span>Vine's deck &amp; tendrils</div>
+        <ul><li>Schud het deck van De Vine, leg het facedown klaar. Leg de Vine Tendril-kaarten ernaast klaar.</li></ul>
+      </div>
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">5</span>Lore-tellers &amp; starthanden</div>
+        <ul>
+          <li>Alle Lore-tellers (elke Illumineer + De Vine) op 0.</li>
+          <li>Elke Illumineer schudt zijn deck, trekt 7 kaarten, mulligan-optie toegestaan. De Vine begint met een <b>lege hand</b>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note vine-note">Anders dan een normaal potje Lorcana <b>trekt en start De Vine</b> als eerste — inclusief kaarten trekken in zijn allereerste beurt.</div>
+  </section>
+
+  <section>
+    <h2 class="vine-h2">De beurt van De Vine</h2>
+    <p class="lead">De speelbeslissingen van De Vine liggen vast in de regels — zijn deck speelt zichzelf.</p>
+    <div class="flow">
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">1</span>Ready</div>
+        <ul><li>Draai de uitgeputte (exerted) kaarten van De Vine weer rechtop.</li></ul>
+      </div>
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">2</span>Set</div>
+        <ul><li>Begineffecten van De Vine's beurt worden afgehandeld.</li></ul>
+      </div>
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">3</span>Resolve the Row</div>
+        <ul>
+          <li>Voor elke kaart in de rij van De Vine, van links naar rechts, de eerst mogelijke actie:</li>
+          <ul>
+            <li>Item met exert-ability → De Vine exert de kaart om die te gebruiken.</li>
+            <li>Character kan questen → doet dat (wordt exerted).</li>
+            <li>Kan niet questen, heeft <b>Reckless</b> → challenget een door de Illumineers gekozen character van zichzelf.</li>
+            <li>Geen van beide mogelijk → er gebeurt niets.</li>
+          </ul>
+        </ul>
+      </div>
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">4</span>Draw</div>
+        <ul><li>De Vine trekt zoveel kaarten als zijn teller aangeeft, facedown en ongezien in zijn "Hand"-vak. Raakt zijn deck leeg, dan wordt zijn discard geschud tot nieuw deck.</li></ul>
+      </div>
+      <div class="phase vine-phase"><div class="ph-title"><span class="ph-num">5</span>Reveal</div>
+        <ul>
+          <li>Draai elke kaart in de hand van De Vine één voor één om en handel direct af:</li>
+          <ul>
+            <li>Vergelijk kostprijs met de inkt die De Vine al heeft — hij hoeft niks uit te geven, alleen te hébben.</li>
+            <li>Genoeg inkt? → gespeeld zonder inkt te exerten. Characters/items achteraan de rij; actions direct afgehandeld → discard.</li>
+            <li>Niet genoeg inkt? → kaart gaat facedown de inktbron in.</li>
+            <li>Kaarten die terugkeren naar de hand mogen door de Illumineers vóór of na de nieuw getrokken kaarten ingedeeld worden.</li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="vine-h2">De beurt van de Illumineers</h2>
+    <p class="lead">Jullie spelen <b>gelijktijdig</b>, zodat je kunt samenwerken en elkaars characters kunt ondersteunen (handig bij Support en andere effecten tot het einde van de beurt). Op een kaart van een Illumineer verwijzen "you"/"your" naar de eigenaar van díe kaart — De Vine is voor iedereen de enige tegenstander.</p>
+    <div class="flow">
+      <div class="phase"><div class="ph-title"><span class="ph-num">1</span>Ready</div>
+        <ul><li>Draai je eigen uitgeputte kaarten weer rechtop.</li></ul>
+      </div>
+      <div class="phase"><div class="ph-title"><span class="ph-num">2</span>Set</div>
+        <ul><li>Begineffecten van je beurt worden afgehandeld.</li></ul>
+      </div>
+      <div class="phase"><div class="ph-title"><span class="ph-num">3</span>Draw</div>
+        <ul><li>Trek een kaart van je deck.</li></ul>
+      </div>
+      <div class="phase"><div class="ph-title"><span class="ph-num">4</span>Main phase</div>
+        <ul><li>Zelfde als het basisspel: inkten, kaarten spelen, questen, challengen, abilities gebruiken — zo vaak en in elke volgorde die je wilt.</li></ul>
+      </div>
+    </div>
+    <div class="note">Einde van de beurt: heeft <b>elke</b> Illumineer minstens evenveel Lore als de vereiste op de actieve encounter-kaart? Dan is de encounter voltooid.</div>
+  </section>
+
+  <section>
+    <h2 class="vine-h2">Scenario's &amp; encounter-kaarten</h2>
+    <div class="two-col">
+      <div class="box vine-box">
+        <h3>De Zoektocht naar Knorretje</h3>
+        <span class="scenario-tag">Encounters 1–3</span>
+        <ul><li>Eerste scenario om te spelen. Bevrijd de gevangen glimmers uit de wortels van de Vine op weg naar Knorretje.</li></ul>
+      </div>
+      <div class="box vine-box">
+        <h3>Het Hart van de Vine</h3>
+        <span class="scenario-tag">Encounters 4–6</span>
+        <ul><li>Vervolg-scenario, dieper de wortels in — ontdek en versla de bron van de kracht van de Vine.</li></ul>
+      </div>
+    </div>
+    <div class="box vine-box" style="margin-top:12px;">
+      <h3>Encounters voltooien</h3>
+      <ul>
+        <li>Elke encounter-kaart is dubbelzijdig: voorkant toont de regels + vereiste Lore (naast de naam).</li>
+        <li>Er ligt steeds maar <b>één encounter actief</b> — de bovenste kaart van de stapel.</li>
+        <li>Het getal naast de naam is <b>geen gezamenlijke pot</b>: het is de hoeveelheid Lore die <b>elke Illumineer afzonderlijk</b> moet hebben. Aan het einde van de gezamenlijke beurt wordt gecheckt of <i>iedereen</i> dat aantal (of meer) heeft.</li>
+        <li>Is dat zo, dan is die encounter voltooid en wordt de kaart <b>omgedraaid</b> — hij verdwijnt als actieve encounter (de andere, nog niet bereikte encounters blijven gewoon op de stapel liggen en worden dus niet allemaal tegelijk weggehaald).</li>
+        <li>1e / 2e encounter voltooid → een glimmer gered: kies een Illumineer, het character op de achterkant sluit zich bij diens characters aan (telt niet als spelen van een kaart). Wordt hij ooit gebanished, dan naar de discard van die speler.</li>
+        <li>Automatisch wordt de <b>volgende kaart in de stapel</b> de nieuwe actieve encounter, met een eigen (meestal hogere) Lore-vereiste per Illumineer.</li>
+        <li>3e encounter van het scenario heeft iets bijzonders op de achterkant — geen glimmer maar de <b>Boss</b> van dat scenario — zie "Winnen" hieronder.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="vine-h2">Vine Lore Rewards</h2>
+    <p class="lead">Op de Lore-track van De Vine staan meerdere drempels waarop een beloning wordt uitgevoerd. Het aantal drempels verschilt per moeilijkheidsgraad:</p>
+    <div class="two-col">
+      <div class="box vine-box">
+        <h3>Normal</h3>
+        <ul><li>Drempels bij <b>5, 10, 20 en 30</b> Lore.</li></ul>
+      </div>
+      <div class="box vine-box">
+        <h3>Hard</h3>
+        <ul><li>Drempels bij <b>5, 10, 15, 20, 25 en 30</b> Lore.</li></ul>
+      </div>
+    </div>
+    <div class="note vine-note" style="margin-top:12px;"><b>Let op:</b> welke beloning bij welke drempel hoort (tendril-icoon, plus-icoon of kruis-icoon), staat <b>op je eigen spelbord</b> aangegeven bij dat getal — dit verschilt per drempel en per moeilijkheidsgraad. Check dus altijd het bord zelf i.p.v. dit vanuit je hoofd te spelen. De drie mogelijke beloningen zijn:</div>
+    <div class="reward-grid" style="margin-top:12px;">
+      <div class="reward"><div class="icon-badge">🌿</div><div><div class="label">Tendril-icoon</div><div class="desc">De Vine maakt 1 Vine Tendril-kaart per Illumineer.</div></div></div>
+      <div class="reward"><div class="icon-badge">+1</div><div><div class="label">Plus-icoon</div><div class="desc">Trekteller van De Vine gaat 1 omhoog — blijvend 1 kaart extra per beurt vanaf nu.</div></div></div>
+      <div class="reward"><div class="icon-badge">✕</div><div><div class="label">Kruis-icoon</div><div class="desc">Elke Illumineer kiest en banisht één van zijn eigen characters.</div></div></div>
+    </div>
+    <div class="note vine-note">Bij <b>40 Lore</b> volgt geen extra beloning meer — dat is het punt waarop De Vine het spel wint (zie hieronder).</div>
+  </section>
+
+  <section>
+    <h2 class="vine-h2">Het spel winnen &amp; verliezen</h2>
+    <div class="two-col">
+      <div class="box vine-box">
+        <h3>✅ De Illumineers winnen</h3>
+        <ul>
+          <li>Zodra de uitdaging op de achterkant van de <b>derde</b> encounter-kaart van het scenario is overwonnen.</li>
+          <li>Op die achterkant staat i.p.v. een glimmer een <b>Boss-character</b>, dat direct in de rij van De Vine komt zodra de kaart wordt omgedraaid.</li>
+          <li>Gooi alles erop om de Boss te banishen en het scenario te winnen.</li>
+          <li>Eerste keer gewonnen? Open dan pas het bijbehorende prijspakket ("Niet openen tot je gewonnen hebt").</li>
+        </ul>
+      </div>
+      <div class="box vine-box">
+        <h3>❌ De Vine wint</h3>
+        <ul>
+          <li>Zodra De Vine <b>40 Lore of meer</b> heeft, óf</li>
+          <li>zodra een Illumineer moet trekken maar geen kaarten meer in zijn deck heeft.</li>
+          <li>Niet getreurd: bij de volgende speelsessie krijgen jullie opnieuw de kans om Knorretje en het rijk te redden.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Eigen samenvatting op basis van het meegeleverde Illumineer's Quest-regelboekje (Ravensburger / Disney Lorcana, 2026) — raadpleeg voor de volledige officiële regels altijd het originele boekje en disneylorcana.com.
+  </footer>
+
+</div>
+</body>
+</html>
