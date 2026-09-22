@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Illumineer's Quest — Deep Trouble — Cheat Sheet</title>
+<style>
+  :root{
+    --ink:#1C1730;
+    --ink-2:#2C2450;
+    --gold:#B4903D;
+    --gold-light:#E7CD8A;
+    --parchment:#FBF6EA;
+    --parchment-2:#F3EAD3;
+    --text-dark:#2A2118;
+    --text-muted:#6B5F4C;
+    --amber:#D79A1E;
+    --amethyst:#7B5EA7;
+    --emerald:#1F8A54;
+    --ruby:#B23B34;
+    --sapphire:#2E6FA7;
+    --steel:#6E7B80;
+    --tide:#0E4C4C;
+    --tide-2:#158585;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
+  body{
+    margin:0;
+    background:var(--ink);
+    font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    color:var(--text-dark);
+    padding:32px 16px;
+  }
+  .sheet{
+    max-width:900px;
+    margin:0 auto;
+    background:var(--parchment);
+    border:2px solid var(--gold);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  header{
+    background:linear-gradient(135deg, var(--ink-2), var(--tide) 85%);
+    padding:22px 32px;
+    border-bottom:3px solid var(--gold);
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  header svg.tide-mark{flex-shrink:0;}
+  header h1{
+    margin:0;
+    font-family:Georgia,"Iowan Old Style",serif;
+    color:var(--gold-light);
+    font-size:24px;
+    letter-spacing:0.5px;
+  }
+  header p{
+    margin:4px 0 0;
+    color:#C9C2DE;
+    font-size:13px;
+  }
+  section{
+    padding:22px 32px;
+    border-bottom:1px solid var(--parchment-2);
+  }
+  section:last-of-type{border-bottom:none;}
+  h2{
+    font-family:Georgia,"Iowan Old Style",serif;
+    color:var(--ink-2);
+    font-size:18px;
+    margin:0 0 14px;
+    padding-bottom:6px;
+    border-bottom:2px solid var(--gold);
+    display:inline-block;
+  }
+  h2.tide-h2{color:var(--tide);}
+  p.lead{font-size:13.5px;line-height:1.6;margin:0 0 14px;}
+  p.lead i{color:var(--text-muted);}
+  .symbol-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:12px;
+  }
+  .symbol{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--parchment-2);
+    border:1px solid #E2D6B4;
+    border-radius:8px;
+    padding:8px 12px;
+  }
+  .symbol svg{flex-shrink:0;}
+  .symbol .label{font-weight:600;font-size:13.5px;color:var(--text-dark);}
+  .symbol .desc{font-size:12px;color:var(--text-muted);}
+  .flow{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .phase{
+    background:var(--parchment-2);
+    border-left:4px solid var(--gold);
+    border-radius:0 8px 8px 0;
+    padding:10px 14px;
+  }
+  .phase.tide-phase{border-left-color:var(--tide-2);}
+  .phase .ph-title{font-weight:700;font-size:14px;color:var(--ink-2);margin-bottom:3px;display:flex;align-items:center;gap:8px;}
+  .phase.tide-phase .ph-title{color:var(--tide);}
+  .phase .ph-num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:20px;height:20px;border-radius:50%;
+    background:var(--gold);color:#fff;font-size:11px;font-weight:800;flex-shrink:0;
+  }
+  .phase.tide-phase .ph-num{background:var(--tide-2);}
+  .phase ul{margin:4px 0 0;padding-left:18px;font-size:13px;line-height:1.6;}
+  .phase ul ul{margin-top:2px;padding-left:16px;font-size:12.5px;}
+  .note{
+    background:#F6E9D8;
+    border:1px solid var(--gold);
+    border-radius:8px;
+    padding:10px 14px;
+    font-size:13px;
+    margin-top:12px;
+  }
+  .note b{color:var(--ruby);}
+  .note.tide-note{background:#E3EFEE;border-color:var(--tide-2);}
+  .note.tide-note b{color:var(--tide);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .box{
+    background:var(--parchment-2);
+    border:1px solid #E2D6B4;
+    border-radius:8px;
+    padding:12px 14px;
+  }
+  .box.tide-box{border-color:#B9D4D2;background:#E9F2F1;}
+  .box h3{margin:0 0 8px;font-size:14px;color:var(--ink-2);display:flex;align-items:center;gap:8px;}
+  .box.tide-box h3{color:var(--tide);}
+  .box ul{margin:0;padding-left:18px;font-size:12.5px;line-height:1.65;}
+  .reward-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;}
+  .reward{
+    display:flex;align-items:flex-start;gap:12px;
+    background:#E9F2F1;border:1px solid #B9D4D2;border-radius:8px;padding:10px 14px;
+  }
+  .reward .icon-badge{
+    flex-shrink:0;width:34px;height:34px;border-radius:50%;
+    background:var(--tide);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:800;
+  }
+  .reward .label{font-weight:700;font-size:13px;color:var(--tide);}
+  .reward .desc{font-size:12px;color:var(--text-muted);margin-top:2px;}
+  .scenario-tag{
+    display:inline-block;font-size:11px;font-weight:700;letter-spacing:.3px;
+    text-transform:uppercase;color:#fff;background:var(--tide);
+    border-radius:4px;padding:2px 8px;margin-bottom:6px;
+  }
+  .scenario-tag.easy{background:var(--emerald);}
+  .scenario-tag.normal{background:var(--sapphire);}
+  .scenario-tag.hard{background:var(--amber);}
+  .scenario-tag.extreme{background:var(--ruby);}
+  .inline-icon{width:11px;height:13px;vertical-align:middle;margin:0 1px;}
+  .check-section{
+    background:linear-gradient(135deg,#E9F2F1,var(--parchment-2));
+    border-bottom:3px solid var(--gold) !important;
+  }
+  .check-grid{display:flex;flex-direction:column;gap:14px;}
+  .check-col{
+    background:#fff;
+    border:1px solid #E2D6B4;
+    border-radius:10px;
+    padding:14px 16px;
+  }
+  .check-col.tide{border-color:#A9CAC7;}
+  .check-title{
+    font-family:Georgia,"Iowan Old Style",serif;
+    font-size:15px;font-weight:700;margin:0 0 10px;
+    padding-bottom:6px;border-bottom:2px solid var(--ink-2);
+    color:var(--ink-2);
+  }
+  .check-col.tide .check-title{border-bottom-color:var(--tide);color:var(--tide);}
+  ul.checklist{list-style:none;margin:0;padding:0;}
+  ul.checklist li{
+    display:flex;align-items:flex-start;gap:8px;
+    font-size:12.5px;line-height:1.55;
+    padding:5px 0;border-bottom:1px dashed #E2D6B4;
+  }
+  ul.checklist li:last-child{border-bottom:none;}
+  ul.checklist li::before{
+    content:"☐";flex-shrink:0;font-size:14px;line-height:1.4;
+    color:var(--ink-2);
+  }
+  .check-col.tide ul.checklist li::before{color:var(--tide);}
+  ul.checklist li b{color:var(--text-dark);}
+  ul.checklist .sub{font-size:11.5px;color:var(--text-muted);display:block;margin-top:1px;}
+  .round-order{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    font-size:12.5px;font-weight:700;color:var(--text-muted);
+    margin:14px 0 4px;flex-wrap:wrap;
+  }
+  .round-order .step{
+    background:var(--ink-2);color:#fff;border-radius:20px;padding:5px 14px;
+  }
+  .round-order .step.tide{background:var(--tide);}
+  .round-order .arrow{color:var(--gold);font-size:16px;}
+  table.bg-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12px;
+    margin-top:10px;
+  }
+  table.bg-table th{
+    background:var(--ink-2);
+    color:#fff;
+    text-align:left;
+    padding:6px 8px;
+    font-weight:700;
+  }
+  table.bg-table td{
+    border:1px solid #E2D6B4;
+    padding:6px 8px;
+    vertical-align:top;
+    background:#fff;
+  }
+  table.bg-table tr:nth-child(even) td{background:var(--parchment-2);}
+  table.draw-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12.5px;
+    margin-top:8px;
+  }
+  table.draw-table th{
+    background:var(--tide);
+    color:#fff;
+    padding:5px 8px;
+  }
+  table.draw-table td{
+    border:1px solid #B9D4D2;
+    padding:5px 8px;
+    background:#fff;
+    text-align:center;
+  }
+  footer{
+    padding:14px 32px;
+    font-size:11px;
+    color:var(--text-muted);
+    text-align:center;
+  }
+  @media(max-width:640px){
+    .two-col{grid-template-columns:1fr;}
+  }
+  @media print{
+    @page{ size:A4; margin:12mm; }
+    html, body{ background:#fff !important; padding:0 !important; }
+    .sheet{
+      max-width:none;
+      border:none;
+      border-radius:0;
+      box-shadow:none;
+    }
+    header{
+      background:var(--parchment-2) !important;
+      border-bottom:2px solid var(--gold);
+    }
+    header h1{ color:var(--ink-2) !important; }
+    header p{ color:var(--text-muted) !important; }
+    section{
+      padding:14px 6px;
+      border-bottom:1px solid #E2D6B4;
+      break-inside:avoid;
+      page-break-inside:avoid;
+    }
+    .symbol, .box, .phase, .note, .reward{
+      break-inside:avoid;
+      page-break-inside:avoid;
+    }
+    .two-col, .symbol-grid, .reward-grid{ gap:8px; }
+    footer{ padding:10px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <svg class="tide-mark" width="46" height="54" viewBox="0 0 100 120">
+      <path d="M50 116 L50 50" fill="none" stroke="#E7CD8A" stroke-width="6" stroke-linecap="round"/>
+      <path d="M26 50 L74 50" fill="none" stroke="#E7CD8A" stroke-width="5" stroke-linecap="round"/>
+      <path d="M50 50 L50 12" fill="none" stroke="#E7CD8A" stroke-width="5" stroke-linecap="round"/>
+      <path d="M34 50 C30 38 26 24 22 12" fill="none" stroke="#E7CD8A" stroke-width="5" stroke-linecap="round"/>
+      <path d="M66 50 C70 38 74 24 78 12" fill="none" stroke="#E7CD8A" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="50" cy="8" r="5" fill="#E7CD8A"/>
+      <circle cx="22" cy="8" r="5" fill="#E7CD8A"/>
+      <circle cx="78" cy="8" r="5" fill="#E7CD8A"/>
+    </svg>
+    <div>
+      <h1>Illumineer's Quest — Deep Trouble</h1>
+      <p>Ursula · Setup · Battlegrounds · Beurtstructuur · Winnen &amp; verliezen</p>
+      <p style="margin-top:2px;font-size:11px;opacity:0.75;">Fan-gemaakte cheat sheet · eigen samenvatting op basis van het officiële Deep Trouble-regelboekje (Ravensburger/Disney Lorcana, 2024), als aanvulling op het Disney Lorcana basisspel</p>
+    </div>
+  </header>
+
+  <section class="check-section">
+    <h2 class="tide-h2">✔ Checklist — wat check je elke ronde?</h2>
+    <p class="lead">Een ronde bestaat uit de beurt van Ursula, gevolgd door de <b>gelijktijdige</b> beurt van alle Illumineers. Onderstaande checklists zijn de <b>korte samenvatting</b> — de volledige uitleg per stap staat verderop in dit document.</p>
+    <div class="round-order">
+      <span class="step tide">1. Ursula's beurt</span>
+      <span class="arrow">→</span>
+      <span class="step">2. Illumineers' beurt (samen)</span>
+      <span class="arrow">→</span>
+      <span class="step tide">herhaal</span>
+    </div>
+    <div class="check-grid" style="margin-top:14px;">
+      <div class="check-col tide">
+        <div class="check-title">🐙 Ursula's beurt</div>
+        <ul class="checklist">
+          <li><b>Ready</b> — al haar kaarten rechtop draaien.</li>
+          <li><b>Set</b> — begineffecten van haar beurt afhandelen.</li>
+          <li><b>Resolve the Row</b> — haar rij van links naar rechts afhandelen.</li>
+          <li><b>Draw</b> — <b>check trekteller</b> (± battleground &amp; lore-drempels), trek dat aantal facedown.</li>
+          <li><b>Reveal</b> — elke kaart één voor één omdraaien en direct afhandelen.</li>
+          <li><b>Check</b> — 40 lore? → Ursula wint.</li>
+        </ul>
+      </div>
+      <div class="check-col">
+        <div class="check-title">🧑‍🤝‍🧑 De Illumineers' beurt</div>
+        <ul class="checklist">
+          <li><b>Gelijktijdig</b> — iedereen speelt tegelijk, overleg vrij.</li>
+          <li><b>Ready → Set → Draw</b> — eigen kaarten, begineffecten, 1 kaart trekken.</li>
+          <li><b>Main phase</b> — inkten, spelen, questen, challengen, evt. 1× een battleground-vaardigheid kopen met lore.</li>
+          <li><b>Check</b> — geen kaarten meer om te trekken? → Ursula wint direct.</li>
+          <li><b>Check</b> — heeft <i>iedereen tegelijk</i> 20+ lore? → jullie winnen.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="tide-h2">Overzicht &amp; Doel</h2>
+    <p class="lead">Eén tot vier Illumineers spelen samen tegen <b>Ursula</b>, een geautomatiseerde tegenstander die zichzelf bestuurt volgens vaste regels — geen extra speler nodig. <i>Doel: race om voldoende lore te verzamelen voordat de zeeheks haar heerschappij over Lorcana vestigt.</i></p>
+    <div class="note tide-note">
+      <b>Jullie winnen</b> zodra <b>elke</b> Illumineer tegelijkertijd 20 of meer lore heeft.<br>
+      <b>Ursula wint</b> zodra zij 40 of meer lore heeft, óf zodra een Illumineer moet trekken maar geen kaarten meer over heeft.
+    </div>
+    <div class="note tide-note" style="margin-top:8px;">Alle normale <b>Disney Lorcana</b>-regels blijven gelden (zie basisspel cheat sheet) — dit document beschrijft alleen wat er <b>anders</b> is tegen Ursula.</div>
+  </section>
+
+  <section>
+    <h2 class="tide-h2">Setup</h2>
+    <div class="flow">
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">1</span>Ursula's trekteller</div>
+        <ul><li>Zet de teller op basis van het aantal Illumineers (zie tabel hieronder). Bij het bereiken van bepaalde lore-drempels gaat deze later omhoog.</li></ul>
+      </div>
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">2</span>Battleground kiezen</div>
+        <ul><li>Kies <b>The Encounter</b> (Easy), <b>A Dark Realm</b> (Normal), <b>The Lair</b> (Hard) of <b>Infinite Wrath</b> (Extreme) en leg die zichtbaar neer. Geeft de battleground Ursula een vaste extra trekkaart? Zet de trekteller direct 1 hoger.</li></ul>
+        <div class="note tide-note" style="margin-top:8px;"><b>Tip:</b> speel je eerste potjes op Easy of Normal om vertrouwd te raken met deze quest-regels.</div>
+      </div>
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">3</span>Ursula's Stolen Trident &amp; deck</div>
+        <ul><li>Zoek <i>Ursula's Stolen Trident</i> op in haar scenariodeck en leg die open als eerste kaart in haar rij. Schud de rest van haar scenariodeck en leg het facedown op haar playmat.</li></ul>
+      </div>
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">4</span>Lore-tellers</div>
+        <ul><li>Alle lore-trackers (elke Illumineer + Ursula) op 0.</li></ul>
+      </div>
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">5</span>Starthanden</div>
+        <ul><li>Elke Illumineer schudt zijn eigen deck en trekt zijn starthand, mulligan toegestaan. Ursula mulligant nooit.</li></ul>
+      </div>
+    </div>
+    <div class="note tide-note">Anders dan een normaal potje Lorcana <b>begint en trekt Ursula als eerste</b> — inclusief kaarten trekken in haar allereerste beurt.</div>
+    <table class="draw-table">
+      <tr><th>Aantal Illumineers</th><th>Basis-trek Ursula</th><th>Extra kaart bij lore-drempel</th></tr>
+      <tr><td>1</td><td>2</td><td>+1 bij 20 lore</td></tr>
+      <tr><td>2</td><td>2</td><td>+1 bij 10 lore, +1 bij 30 lore</td></tr>
+      <tr><td>3</td><td>3</td><td>+1 bij 20 lore</td></tr>
+      <tr><td>4</td><td>3</td><td>+1 bij 10 lore, +1 bij 30 lore</td></tr>
+    </table>
+    <div class="note tide-note" style="margin-top:8px;">Elke drempel-bonus geldt maar <b>1×</b> en blijft daarna behouden, ook als Ursula's lore weer zakt. <b>Easy</b> negeert deze drempel-verhogingen volledig. <b>Hard</b> en <b>Extreme</b> geven bovenop deze tabel nog een vaste +1 kaart per beurt (al bij setup verwerkt in stap 2).</div>
+  </section>
+
+  <section>
+    <h2 class="tide-h2">De beurt van Ursula</h2>
+    <p class="lead">De speelbeslissingen van Ursula liggen vast in de regels — haar deck speelt zichzelf.</p>
+    <div class="flow">
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">1</span>Ready</div>
+        <ul><li>Draai de uitgeputte (exerted) kaarten van Ursula weer rechtop.</li></ul>
+      </div>
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">2</span>Set</div>
+        <ul><li>Begineffecten van Ursula's beurt worden afgehandeld.</li></ul>
+      </div>
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">3</span>Resolve the Row</div>
+        <ul>
+          <li>Voor elke kaart in de rij van Ursula, van links naar rechts, de eerst mogelijke actie:</li>
+          <ul>
+            <li>Item met exert-ability → Ursula exert de kaart om die te gebruiken.</li>
+            <li>Character kan questen → doet dat (wordt exerted).</li>
+            <li>Kan niet questen, heeft <b>Reckless</b> → challenget een door de Illumineers gekozen character van zichzelf.</li>
+            <li>Geen van beide mogelijk → er gebeurt niets.</li>
+          </ul>
+        </ul>
+      </div>
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">4</span>Draw</div>
+        <ul><li>Ursula trekt één voor één zoveel kaarten als haar teller aangeeft, facedown en ongezien op een stapel naast haar deck — dit is haar "hand". Kaarten die naar haar hand terugkeren, gaan ook op deze stapel. Raakt haar deck leeg, dan wordt haar discard geschud tot nieuw deck.</li></ul>
+      </div>
+      <div class="phase tide-phase"><div class="ph-title"><span class="ph-num">5</span>Reveal</div>
+        <ul>
+          <li>Draai elke kaart in Ursula's hand één voor één om en handel direct af, tot de hand leeg is:</li>
+          <ul>
+            <li>Vergelijk kostprijs met de inkt die Ursula al heeft — ze hoeft niks uit te geven, alleen te hébben.</li>
+            <li>Genoeg inkt? → gespeeld zonder inkt te exerten. Characters/items achteraan haar rij; actions direct afgehandeld → discard.</li>
+            <li>Niet genoeg inkt? → kaart gaat facedown haar inktwel in.</li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+    <div class="note tide-note">
+      Moet Ursula een keuze maken? → de Illumineers kiezen samen namens haar.<br>
+      Op haar kaarten betekenen "jij/jouw" Ursula zelf; "tegenstander(s)" verwijst naar de Illumineers.
+    </div>
+  </section>
+
+  <section>
+    <h2 class="tide-h2">De beurt van de Illumineers</h2>
+    <p class="lead">Jullie spelen <b>gelijktijdig</b>, zodat je kunt samenwerken en elkaars characters kunt ondersteunen (handig bij Support en andere effecten tot het einde van de beurt). Op een kaart van een Illumineer verwijzen "you"/"your" naar de eigenaar van díe kaart — Ursula is voor iedereen de enige tegenstander. Een effect dat "a player" noemt, mag ook op Ursula toegepast worden!</p>
+    <div class="flow">
+      <div class="phase"><div class="ph-title"><span class="ph-num">1</span>Ready</div>
+        <ul><li>Draai je eigen uitgeputte kaarten weer rechtop.</li></ul>
+      </div>
+      <div class="phase"><div class="ph-title"><span class="ph-num">2</span>Set</div>
+        <ul><li>Begineffecten van je beurt worden afgehandeld.</li></ul>
+      </div>
+      <div class="phase"><div class="ph-title"><span class="ph-num">3</span>Draw</div>
+        <ul><li>Trek een kaart van je deck. Geen kaarten meer over? → Ursula wint direct.</li></ul>
+      </div>
+      <div class="phase"><div class="ph-title"><span class="ph-num">4</span>Main phase</div>
+        <ul><li>Zelfde als het basisspel: inkten (max. 1 kaart), kaarten spelen, questen, challengen, abilities gebruiken — zo vaak en in elke volgorde die je wilt. Daarnaast mag je <b>1× per beurt</b> een battleground-vaardigheid kopen door lore te betalen (zie hieronder).</li></ul>
+      </div>
+    </div>
+    <div class="note">Einde van de ronde: heeft <b>elke</b> Illumineer tegelijkertijd 20 of meer lore? Dan winnen jullie meteen.</div>
+  </section>
+
+  <section>
+    <h2 class="tide-h2">Battlegrounds</h2>
+    <p class="lead">Elke battleground geeft Illumineers eigen vaardigheden die <b>1× per beurt per speler</b> gekocht mogen worden door lore te betalen (lore-tracker omlaag — kies dus zorgvuldig). <b>Hard</b> en <b>Extreme</b> geven Ursula bovendien extra kracht.</p>
+    <table class="bg-table">
+      <tr>
+        <th style="width:15%;">Battleground</th>
+        <th style="width:10%;">Niveau</th>
+        <th style="width:28%;">Effect op Ursula</th>
+        <th style="width:47%;">Vaardigheden voor Illumineers (kosten in lore)</th>
+      </tr>
+      <tr>
+        <td><b>The Encounter</b><br><span class="scenario-tag easy">Easy</span></td>
+        <td>Easy</td>
+        <td>Geen extra trekkaarten via lore-drempels.</td>
+        <td><b>1:</b> verwijder tot 2 schade van gekozen character &nbsp;·&nbsp; <b>2:</b> ready óf exert gekozen character &nbsp;·&nbsp; <b>3:</b> gekozen Illumineer trekt 2 kaarten</td>
+      </tr>
+      <tr>
+        <td><b>A Dark Realm</b><br><span class="scenario-tag normal">Normal</span></td>
+        <td>Normal</td>
+        <td>Standaard lore-drempels uit de trektabel gelden gewoon.</td>
+        <td><b>1:</b> gekozen character krijgt +2 Strength deze beurt &nbsp;·&nbsp; <b>2:</b> gekozen character krijgt Resist +1 tot start van jouw volgende beurt &nbsp;·&nbsp; <b>3:</b> elke Illumineer trekt 1 kaart</td>
+      </tr>
+      <tr>
+        <td><b>The Lair</b><br><span class="scenario-tag hard">Hard</span></td>
+        <td>Hard</td>
+        <td>Ursula trekt elke beurt 1 kaart extra (bovenop de trektabel).</td>
+        <td><b>1:</b> deel 1 schade toe aan gekozen character &nbsp;·&nbsp; <b>2:</b> ready gekozen character &nbsp;·&nbsp; <b>3:</b> elke Illumineer legt zijn bovenste kaart facedown en exerted in zijn inktwel</td>
+      </tr>
+      <tr>
+        <td><b>Infinite Wrath</b><br><span class="scenario-tag extreme">Extreme</span></td>
+        <td>Extreme</td>
+        <td>Ursula trekt elke beurt 1 kaart extra; gebanishte characters van Ursula keren terug naar haar hand i.p.v. haar discard.</td>
+        <td><b>2:</b> Ursula discardt willekeurig 1 kaart</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2 class="tide-h2">Belangrijke kaart-specifieke regels</h2>
+    <div class="reward-grid">
+      <div class="reward"><div class="icon-badge">✎</div><div><div class="label">Ursula's Contract</div><div class="desc">0-kosten item, 4× in haar deck. Zolang deze in het spel is, mogen Illumineers géén battleground-vaardigheden gebruiken. Bij start van Ursula's beurt: banisht zichzelf voor +3 lore voor Ursula.</div></div></div>
+      <div class="reward"><div class="icon-badge">🔱</div><div><div class="label">Ursula's Stolen Trident</div><div class="desc">Start het spel al open in haar rij. Exert-kosten: +1 lore voor Ursula.</div></div></div>
+      <div class="reward"><div class="icon-badge">🛡</div><div><div class="label">Bodyguard-characters</div><div class="desc">Meerdere characters van Ursula hebben Bodyguard en komen exerted in het spel ("Ursula's Sentry") — moeten als eerste uitgedaagd worden indien mogelijk.</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="tide-h2">Het spel winnen &amp; verliezen</h2>
+    <div class="two-col">
+      <div class="box tide-box">
+        <h3>✅ De Illumineers winnen</h3>
+        <ul>
+          <li>Zodra <b>elke</b> Illumineer <b>tegelijkertijd</b> 20 lore of meer heeft.</li>
+          <li>Er is geen aparte boss-fase: het bereiken van de gezamenlijke lore-drempel ís de overwinning.</li>
+        </ul>
+      </div>
+      <div class="box tide-box">
+        <h3>❌ Ursula wint</h3>
+        <ul>
+          <li>Zodra Ursula <b>40 lore of meer</b> heeft, óf</li>
+          <li>zodra een Illumineer moet trekken maar geen kaarten meer in zijn deck heeft.</li>
+          <li>Niet getreurd: bij de volgende speelsessie krijgen jullie opnieuw de kans om de zeeheks te verslaan.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Eigen samenvatting op basis van het meegeleverde Illumineer's Quest: Deep Trouble-regelboekje (Ravensburger / Disney Lorcana, 2024) — raadpleeg voor de volledige officiële regels altijd het originele boekje en disneylorcana.com.
+  </footer>
+
+</div>
+</body>
+</html>
